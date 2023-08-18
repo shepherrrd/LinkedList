@@ -1,6 +1,6 @@
 ﻿namespace CustomLinkedList;
 
-public class LinkedList <T>
+public class CustomLinkedList <T>
 {
     public Node<T>? First { get; private set; }
     public Node<T>? Last { get; private set; }
