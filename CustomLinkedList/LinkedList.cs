@@ -2,15 +2,9 @@
 
 public class LinkedList <T>
 {
-    public Node<T> First { get; private set; }
-    public Node<T> Last { get; private set; }
-    public int Count { get; private set; }
-
-    public LinkedList()
-    {
-        First = null;
-        Last = null;
-    }
+    public Node<T>? First { get; private set; }
+    public Node<T>? Last { get; private set; }
+    public int Count { get; private set; }    
 
     public void AddFirst(Node<T> node)
     {
@@ -56,7 +50,7 @@ public class LinkedList <T>
         while(node != null && !node.Data!.Equals(target)) {        
         node = node.Next;
         }
-        return node;
+        return node!;
     }
     public void RemoveFirst()
     {
@@ -73,5 +67,36 @@ public class LinkedList <T>
         {
             return;
         }
+        if(First == removedNode)
+        {
+            RemoveFirst();
+            return;
+        }
+
+        Node<T> oldnode = First;
+        Node<T> current = oldnode.Next;
+
+        while(current != null && current != removedNode) {
+            oldnode = current;
+            current = current.Next;        
+        }
+        if(current != null)
+        {
+            oldnode.Next = current.Next;
+            Count--;
+        }
+    }
+    public void Traverse()
+    {
+        Console.WriteLine($"\nFirst {First.Data}");
+        Console.WriteLine($"\nLast {Last.Data}");
+
+        Node<T> node = First;
+        while( node != null )
+        {
+            Console.WriteLine( node.Data );
+            node = node.Next;
+        }
+        Console.WriteLine(node!.Data);
     }
 }
