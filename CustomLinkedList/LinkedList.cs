@@ -69,6 +69,9 @@ public class LinkedList <T>
     }
     public void Remove(Node<T> removedNode)
     {
-
+        if (First is null || Count is 0)
+        {
+            return;
+        }
     }
 }
